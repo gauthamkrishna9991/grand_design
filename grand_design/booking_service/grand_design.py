@@ -16,10 +16,16 @@ Created on Wed Oct  9 11:27:24 2019
 
 import cv2
 import numpy as np
+
+#rom '../age_gender'
 from eywa.nlu import Classifier
 from eywa.nlu import EntityExtractor
 import random
 import datetime
+import sys
+
+sys.path.insert(1,"../facial_features/")
+import age_gender_classification
 
 # handle command line arguments
 #ap = argparse.ArgumentParser()
@@ -120,10 +126,18 @@ CONV_SAMPLES = {
     'greetings' : ['Hi', 'hello', 'How are you', 'hey there', 'hey'],
     'taxi'      : ['book a '+str(label), 'need a ride', 'find me a'+str(label)],
     'datetime'  : ['what day is today', 'todays date', 'what time is it now',
-                   'time now', 'what is the time']}
+                   'time now', 'what is the time'],
+    'age'       : ['How old is he','How old is she','What is the age of this person',
+                   'Give me the age of this person'],
+    'gender'    : ["What is this person's gender","Is this person, male or female",
+                    "Give me the sex of this person","Give me the gender of this person"],                                
+}
+
+
 CLF = Classifier()
 for key in CONV_SAMPLES:
     CLF.fit(CONV_SAMPLES[key], key)
+
 X_TAXI = ['Go ' +str(label)+' to kochi ', 'need ' +str(label)+ 'to delhi', 'find me a '+str(label)+' for manhattan',
           'call a'+str(label)+' to calicut']
 Y_TAXI = [{'service': str(label), 'destination': 'kochi'}, {'service': str(label), 'destination' : 'delhi'},
@@ -149,9 +163,20 @@ Y_DATETIME = [{'intent' : 'day', 'target': 'today'}, {'intent' : 'date', 'target
 
 EX_DATETIME = EntityExtractor()
 EX_DATETIME.fit(X_DATETIME, Y_DATETIME)
+
+# X_AGE = ['How old is he','How old is she','What is the age of this person',
+#             'Give me the age of this person'],
+# Y_AGE = [{'intent':'age'},{'intent':'age'},{'intent':'age'},{'intent':'age'}]
+
+# EX_AGE = EntityExtractor()
+# EX_AGE.fit(X_AGE,Y_AGE)
+
 _EXTRACTORS = {'taxi':EX_TAXI,
                'greetings':EX_GREETING,
-               'datetime':EX_DATETIME}
+               'datetime':EX_DATETIME,
+            #    'age':EX_AGE,
+               }
+               
 def get_response(u_query):
     '''
     Accepts user query and returns a response based on the class of query
@@ -163,7 +188,17 @@ def get_response(u_query):
     q_class = CLF.predict(u_query)
 
     # Run entity extractor of the predicted class on the query.
-    q_entities = _EXTRACTORS[q_class].predict(u_query)
+    if q_class not in ['age','gender']:
+        q_entities = _EXTRACTORS[q_class].predict(u_query)
+
+    if q_class == 'age':
+        age,gender=age_gender_classification.main().split(",")
+        responses['age'] = "Age of the given person is "+ age
+
+    if q_class == 'gender':
+        age,gender=age_gender_classification.main().split(",")
+        responses['gender'] = "The gender of the given person is "+ gender             
+
     if q_class == 'taxi':
         responses['taxi'] = 'Booking a '+q_entities['service']+ ' for '+q_entities['destination']
 
@@ -176,7 +211,7 @@ def get_response(u_query):
 
         def get_dateime():
             # Calender api.
-            pass
+            pass    
 
     if q_class == 'greetings':
         responses['greetings'] = ['Hey', 'Hi there',
@@ -184,6 +219,7 @@ def get_response(u_query):
                                                   '\n        what would you like me to do ?'][rd_i]
 
     return 'Agent : '+responses[q_class]
+
 if __name__ == '__main__':
     # Greeting user on startup.
     print(get_response('Hi'))

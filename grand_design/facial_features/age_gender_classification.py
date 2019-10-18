@@ -8,6 +8,7 @@ from wide_resnet import WideResNet
 
 
 
+
 pretrained_model = "https://github.com/yu4u/age-gender-estimation/releases/download/v0.5/weights.28-3.73.hdf5"
 modhash = 'fbe63257a054c1c5466cfd7bf14646d6'
 
@@ -124,9 +125,10 @@ def main():
             label = "{}, {}".format(int(predicted_ages[i]),
                                     "M" if predicted_genders[i][0] < 0.5 else "F")
             draw_label(img, (d.left(), d.top()), label)
+            #print(type(label))
 
-        cv2.imwrite("result.jpg", img)
-        print('done')
+        #cv2.imwrite("result.jpg", img)
+        return label
 
 
 
