@@ -126,7 +126,7 @@ for key in CONV_SAMPLES:
     CLF.fit(CONV_SAMPLES[key], key)
 
 
-X_AGE = [ "What is this person's age", "Give me the age", "Find out the age of Abhijith",
+X_AGE = [ "What is this person's age", "Give me the age of this person", "Find out the age of Abhijith",
              "How old is Abhijith" ]
 Y_AGE = [ {"person":"person"}, {"person":"person"},{"person":"Abhijith"},{"person":"Abhijith"}]
 
@@ -141,8 +141,8 @@ Y_GREETING = [{'greet': 'Hii'}, {'greet': 'helllo'}, {'greet': 'Howdy'},
 EX_GREETING = EntityExtractor()
 EX_GREETING.fit(X_GREETING, Y_GREETING)
 
-X_GENDER = [ "What is this person's gender", "Give me the gender", "Find out the gender of Abhijith","Is the person, a male or female","M/F"]
-Y_GENDER = [ {"person":"person"},{"person":"person"},{"person":"Abhijith"},{"person":"person"},{"person":"person"}]
+X_GENDER = [ "What is the gender of Abhijith", "Give me this person gender", "Find out the gender of Abhijith","Is the person, a male or female","gender of this person "]
+Y_GENDER = [ {"person":"Abhijith"},{"person":"person"},{"person":"Abhijith"},{"person":"person"},{"person":"person"}]
 
 EX_GENDER = EntityExtractor()
 EX_GENDER.fit(X_GENDER,Y_GENDER)
