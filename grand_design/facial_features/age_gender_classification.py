@@ -2,14 +2,8 @@ from pathlib import Path
 import cv2
 import dlib
 import numpy as np
-import argparse
 from contextlib import contextmanager
 from wide_resnet import WideResNet
-
-
-
-
-
 
 def draw_label(image, point, label, font=cv2.FONT_HERSHEY_SIMPLEX,
                font_scale=0.8, thickness=1):
@@ -109,6 +103,7 @@ if len(detected) > 0:
 #        cv2.imwrite("result.jpg", img)
     label=[label]
     print(label)
+
 
 
 
