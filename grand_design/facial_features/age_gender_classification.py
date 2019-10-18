@@ -97,7 +97,7 @@ if len(detected) > 0:
     for i, d in enumerate(detected):
         label = "{}, {}".format(int(predicted_ages[i]),
                                 "M" if predicted_genders[i][0] < 0.5 else "F")
-        print([label])
+        #print([label])
 #            draw_label(img, (d.left(), d.top()), label)
 
 #        cv2.imwrite("result.jpg", img)
@@ -113,5 +113,79 @@ Here comes the chatbot part of the code
 import random
 from eywa.nlu import Classifier
 from eywa.nlu import EntityExtractor
+
+CONV_SAMPLES = {
+    'age'       : [ "What is this person's age", "Give me the age", "Find out the age of Abhijith",
+                    "How old is Abhijith" ],
+    'gender'    : [ "What is this person's gender", "Give me the gender", "Find out the gender of Abhijith"],
+    'greetings' : ['Hi', 'hello', 'How are you', 'hey there', 'hey','hola'],
+}
+
+CLF = Classifier()
+for key in CONV_SAMPLES:
+    CLF.fit(CONV_SAMPLES[key], key)
+
+
+X_AGE = [ "What is this person's age", "Give me the age of this person", "Find out the age of Abhijith",
+             "How old is Abhijith" ]
+Y_AGE = [ {"person":"person"}, {"person":"person"},{"person":"Abhijith"},{"person":"Abhijith"}]
+
+EX_AGE = EntityExtractor()
+EX_AGE.fit(X_AGE,Y_AGE)
+
+
+X_GREETING = ['Hii', 'helllo', 'Howdy', 'hey there', 'hey', 'Hi']
+Y_GREETING = [{'greet': 'Hii'}, {'greet': 'helllo'}, {'greet': 'Howdy'},
+              {'greet': 'hey'}, {'greet': 'hey'}, {'greet': 'Hi'}]
+
+EX_GREETING = EntityExtractor()
+EX_GREETING.fit(X_GREETING, Y_GREETING)
+
+X_GENDER = [ "What is the gender of Abhijith", "Give me this person gender", "Find out the gender of Abhijith","Is the person, a male or female","gender of this person "]
+Y_GENDER = [ {"person":"Abhijith"},{"person":"person"},{"person":"Abhijith"},{"person":"person"},{"person":"person"}]
+
+EX_GENDER = EntityExtractor()
+EX_GENDER.fit(X_GENDER,Y_GENDER)
+
+_EXTRACTORS = {'age':EX_AGE,
+               'gender':EX_GENDER,
+               'greetings':EX_GREETING}
+
+def get_response(u_query):
+    '''
+    Accepts user query and returns a response based on the class of query
+    '''
+    responses = {}
+    rd_i = random.randint(0, 2)
+
+    # Predict the class of the query.
+    q_class = CLF.predict(u_query)
+
+    # Run entity extractor of the predicted class on the query.
+    q_entities = _EXTRACTORS[q_class].predict(u_query)
+    if q_class == 'age':
+        responses['age'] = 'The age of '+q_entities['person']+ ' is '+label[0][:2]
+
+    if q_class == 'gender':
+        responses['gender'] = 'The gender of '+q_entities['person']+' is '+label[0][4:]
+
+    if q_class == 'greetings':
+        responses['greetings'] = ['Hey', 'Hi there',
+                                  'Hello'][rd_i]+['\n        what would you like me to do ?', '',
+                                                  '\n        what would you like me to do ?'][rd_i]
+
+    return 'Agent : '+responses[q_class]
+
+if __name__ == '__main__':
+    # Greeting user on startup.
+    print(get_response('Hi'))
+
+    while True:
+        UQUERY = input('you   : ')
+        if UQUERY == 'bye':
+            break
+        RESPONSE = get_response(UQUERY)
+        print(RESPONSE)               
+
     
 
