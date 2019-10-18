@@ -2,7 +2,7 @@
 
 
 
-Download yolo.weights here and copy it to the booking service folder.
+Download yolo.weights here and copy it to the booking service folder. <br/>
 Download agegender.hdf5 and copy it to booking_service folder.(rename it to agegender.hdf5)
 
 [Download](https://pjreddie.com/media/files/yolov3.weights)
