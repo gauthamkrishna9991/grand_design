@@ -56,7 +56,7 @@ depth = 16
 k = 8
 weight_file = 'agegender.hdf5'
 margin = 0.4
-img = cv2.imread('neilan.jpg')
+img = cv2.imread('office.jpg')
 
 
 # for face detection
@@ -74,6 +74,7 @@ img_h, img_w, _ = np.shape(input_img)
 # detect faces using dlib detector
 detected = detector(input_img, 1)
 faces = np.empty((len(detected), img_size, img_size, 3))
+label_list=[]
 
 if len(detected) > 0:
     for i, d in enumerate(detected):
@@ -97,12 +98,12 @@ if len(detected) > 0:
     for i, d in enumerate(detected):
         label = "{}, {}".format(int(predicted_ages[i]),
                                 "M" if predicted_genders[i][0] < 0.5 else "F")
-        #print([label])
+        label_list.append(label)
 #            draw_label(img, (d.left(), d.top()), label)
 
 #        cv2.imwrite("result.jpg", img)
-    label=[label]
-    print(label)
+    #label=[label]
+    print(label_list)
 
 
 
@@ -164,10 +165,17 @@ def get_response(u_query):
     # Run entity extractor of the predicted class on the query.
     q_entities = _EXTRACTORS[q_class].predict(u_query)
     if q_class == 'age':
-        responses['age'] = 'The age of '+q_entities['person']+ ' is '+label[0][:2]
+        res="\n"
+        for i in range(len(label_list)):
+            res += 'The age of '+q_entities['person']+ ' is '+label_list[i][:2]+'\n'
+        responses['age']=res    
 
     if q_class == 'gender':
-        responses['gender'] = 'The gender of '+q_entities['person']+' is '+label[0][4:]
+        res="\n"
+        for i in range(len(label_list)):
+            res += 'The gender of '+q_entities['person']+ ' is '+label_list[i][4:]+'\n'
+        responses['gender']=res
+        #responses['gender'] = 'The gender of '+q_entities['person']+' is '+label[0][4:]
 
     if q_class == 'greetings':
         responses['greetings'] = ['Hey', 'Hi there',
