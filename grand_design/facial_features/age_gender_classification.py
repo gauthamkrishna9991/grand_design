@@ -167,13 +167,13 @@ def get_response(u_query):
     if q_class == 'age':
         res="\n"
         for i in range(len(label_list)):
-            res += 'The age of '+q_entities['person']+ ' is '+label_list[i][:2]+'\n'
+            res += 'The age of '+q_entities['person']+str(i)+ '  is '+label_list[i][:2]+'\n'
         responses['age']=res    
 
     if q_class == 'gender':
         res="\n"
         for i in range(len(label_list)):
-            res += 'The gender of '+q_entities['person']+ ' is '+label_list[i][4:]+'\n'
+            res += 'The gender of '+q_entities['person']+str(i)+ ' is '+label_list[i][4:]+'\n'
         responses['gender']=res
         #responses['gender'] = 'The gender of '+q_entities['person']+' is '+label[0][4:]
 
