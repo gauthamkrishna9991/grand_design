@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 # from elasticsearch_dsl import Search
 
 app=Flask(__name__)
-es = Elasticsearch()
+es = Elasticsearch(port=9200)
 
 
 
@@ -43,7 +43,7 @@ def init():
     
 
 # Search Items
-@app.route('/api',methods=['GET','POST'])
+@app.route('/',methods=['GET','POST'])
 def search():
     if request.method=='POST':
         text=request.form['text']
@@ -66,12 +66,12 @@ def search():
 
         return redirect(url_for('search_result', text=result))
 
-    return render_template('index.html')
+    return render_template('search.html')
 
 #showing the content
-@app.route('/', methods=['GET'])
+@app.route('/api', methods=['POST'])
 def index():
-    if request.method=='GET':
+    if request.method=='POST':
         #return "Results"
         res = es.get(index="search-index", doc_type='url', id=1)
         return jsonify(res['_source'])
@@ -87,5 +87,5 @@ def search_result():
 
 
 if __name__ == "__main__":
-    # init()
+    #init()
     app.run(debug=True)
