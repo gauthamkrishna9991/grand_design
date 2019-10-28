@@ -66,7 +66,7 @@ def search():
 
         return redirect(url_for('search_result', text=result))
 
-    return render_template('search.html')
+    return render_template('index.html')
 
 #showing the content
 @app.route('/api', methods=['POST'])
