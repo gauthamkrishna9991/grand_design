@@ -20,7 +20,7 @@ button {
 		outline: none;
 	}
 } */
-#head1{
+.head1{
 	color: blue;
 }
 input {
@@ -36,7 +36,7 @@ input {
 	}
 }
 
-#search1{
+.search1{
 
 		width: 1200px;
 

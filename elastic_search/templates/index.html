@@ -1,6 +1,7 @@
 
 <!DOCTYPE html>
-  <link href="main.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Pacifico">
+  <link rel="stylesheet" href="main.css" >
     <centre><h1 id='head1'>Search page</h1></centre>
 
 <body>
@@ -15,9 +16,17 @@
       </p>
     </div>
   </div>
-<div class="searchbox"  >
-    <form action="/api" method="POST" >
-        <input id="search1" type="text" placeholder="Search..." name="text" class="search"maxlength="30" size="70">
+<div class="searchbox" >
+    <form  align="center" action="/api" method="POST"  >
+      <style type="text/css">
+      #search1
+      {
+        width: 600px;
+height: 30px;
+}
+      </style>
+        <input align="centre" id="search1" type="text" placeholder="Search..." name="text" class="search"maxlength="30" size="70" >
+
         <button  class="btn-search">
             <img src="https://img.icons8.com/cotton/24/000000/search--v2.png">
         </button>
