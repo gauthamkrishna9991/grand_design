@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 # from elasticsearch_dsl import Search
 
 app=Flask(__name__)
-es = Elasticsearch(port=9200)
+es = Elasticsearch()
 
 
 
@@ -74,7 +74,7 @@ def index():
     if request.method=='POST':
         #return "Results"
         res = es.get(index="search-index", doc_type='url', id=1)
-        return jsonify(res['_source'])
+        return res['_source']['url']
     return "neigh"
 
 #Search results
@@ -87,5 +87,5 @@ def search_result():
 
 
 if __name__ == "__main__":
-    #init()
+    # init()
     app.run(debug=True)
