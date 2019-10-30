@@ -63,6 +63,7 @@ def search():
         for hits in res['hits']['hits']:
             print(hits['_source']['url'])
             result.append(hits['_source']['url'])
+            print(result)
         
         return redirect(url_for('search_result', text=result))
 
@@ -72,18 +73,27 @@ def search():
 @app.route('/api', methods=['POST'])
 def index():
     if request.method=='POST':
+        txt=""
         #return "Results"
-        res = es.get(index="search-index", doc_type='url', id=1)
+        
+#        for i in range(5):
+#            res = es.get(index="search-index", doc_type='url', id=i)
+#            txt+=' \n '+str(res['_source']['url'])
+        i=0
+        try:
+            while es.get(index="search-index", doc_type='url', id=i):
+                res=es.get(index="search-index", doc_type='url', id=i)
+                txt+=' \t '+str(res['_source']['url'])
+                i+=1
+        except :
+            print('end of search')
+            
 #        print(res['_source'])
-        return '<html> '+str((res['_source']['url']))+' </html>'
-    return "neigh"
+        return '<html> '+txt+' </html>'
 
-#Search results
-@app.route('/result')
-def search_result():
-    text = request.args.get('text', None)
-    print(text)
-    return text
+
+
+
     
 
 
