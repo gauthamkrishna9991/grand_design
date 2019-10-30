@@ -45,36 +45,32 @@ def init():
 # Search Items
 @app.route('/',methods=['GET','POST'])
 def search():
-    if request.method=='POST':
-        text=request.form['text']
-        body ={
-            "query": {
-                "multi_match":{
-                    "query": text,
-                }
+    keyword = request.form['keyword']
+
+    body = {
+        "query": {
+            "multi_match": {
+                "query": keyword,
+                "fields": ["content", "title"]
             }
         }
+    }
 
-        res = es.search(index="search-index", body=body)
-        print(res)
+    res = es.search(index="search-index", doc_type="title", body=body)
+    render_template('index.html')
 
-        result = []
-        print(".................STONKS ............")
-        for hits in res['hits']['hits']:
-            print(hits['_source']['url'])
-            result.append(hits['_source']['url'])
+    return jsonify(res['hits']['hits'])
 
-        return redirect(url_for('search_result', text=result))
 
-    return render_template('index.html')
 
 #showing the content
 @app.route('/api', methods=['POST'])
 def index():
     if request.method=='POST':
         #return "Results"
-        res = es.get(index="search-index", doc_type='url', id=1)
-        return res['_source']['url']
+        res = es.get(index="search-index", doc_type='title', id=1)
+        print(res['_source'])
+        return jsonify(res['hits']['hits'])
     return "neigh"
 
 #Search results
