@@ -47,6 +47,8 @@ def init():
 def search():
     if request.method=='POST':
         text=request.form['text']
+
+
         body ={
             "query": {
                 "multi_match":{
