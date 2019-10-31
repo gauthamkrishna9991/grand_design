@@ -43,7 +43,7 @@ def init():
     
 
 # Search Items
-@app.route('/',methods=['GET','POST'])
+@app.route('/api',methods=['GET','POST'])
 def search():
     if request.method=='POST':
         text=request.form['text']
@@ -63,40 +63,32 @@ def search():
         for hits in res['hits']['hits']:
             print(hits['_source']['url'])
             result.append(hits['_source']['url'])
-            print(result)
-        
+
         return redirect(url_for('search_result', text=result))
 
     return render_template('index.html')
 
 #showing the content
-@app.route('/api', methods=['POST'])
+@app.route('/', methods=['GET'])
 def index():
-    if request.method=='POST':
-        txt=""
+    if request.method=='GET':
         #return "Results"
-        
-#        for i in range(5):
-#            res = es.get(index="search-index", doc_type='url', id=i)
-#            txt+=' \n '+str(res['_source']['url'])
-        i=0
-        try:
-            while es.get(index="search-index", doc_type='url', id=i):
-                res=es.get(index="search-index", doc_type='url', id=i)
-                txt+=' \t '+str(res['_source']['url'])
-                i+=1
-        except :
-            print('end of search')
-            
-#        print(res['_source'])
-        return '<html> '+txt+' </html>'
+        res = es.get(index="search-index", doc_type='url', id=1)
+        return jsonify(res['_source'])
+    return "neigh"
 
-
-
-
+#Search results
+@app.route('/result')
+def search_result():
+    text = request.args.get('text', None)
+    print(text)
+    return text
     
 
 
 if __name__ == "__main__":
     # init()
-    app.run(debug=True)
+    try:
+        app.run(debug=True)
+    except:
+        print('invalid search')
