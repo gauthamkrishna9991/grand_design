@@ -2,7 +2,7 @@
 <!DOCTYPE html>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Pacifico">
   <link rel="stylesheet" href="main.css" >
-    <centre><h1 id='head1'>Search page</h1></centre>
+    <centre><h1 id='head1'> Search page </h1></centre>
 
 <body>
 
@@ -11,12 +11,28 @@
     <div style="font-family: 'Pacifico', cursive;">
       <p>
         <center>
-        <font size="8">Search with image contexts</font>
+        <font size="8" color=green>Search with image contexts</font>
         </center>
       </p>
     </div>
   </div>
 <div class="searchbox" >
+  <form align="center" action="/imgupload">
+    <style>
+    #img1{
+      width: 600px;
+      color: blue;
+height: 40px;
+}
+    #submit1{
+      width: 80px;
+height: 70px;
+    }
+    </style>
+  Select a file: <input id="img1" type="file" name="myFile">
+  <br></br>
+  <input type="submit" id="submit1">
+</form>
     <form  align="center" action="/api" method="POST"  >
       <style type="text/css">
       #search1
