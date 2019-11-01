@@ -113,10 +113,10 @@ for i in indices:
     label = str(classes[class_ids[i]])
 print(label)
 CONV_SAMPLES = {
-    'car'       : [ "test drive this <img> ", " cost of this <img> vehicle", "what is the mileage of this <img> vehicle",
-                    "which model vehicle is this <img>" ],
+    'vehicle'       : [ "test drive this <img> ", " cost of this <img> vehicle", "what is the mileage of this <img> vehicle",
+                    "which  vehicle is this <img>" ],
     'gender'    : [ " <img> What is  the disease associated with this  gender", " Diseases <img> these gender have", "Find out the gender problems of <img> Abhijith"],
-    'number' : ['how many people in this <img> ', 'number of people in <img> ', ' <img>count the people']
+    'numberofpeople' : ['how many people in this <img> ', 'number of people in <img> ', ' <img>count the people']
 }
 CLF = Classifier()
 for key in CONV_SAMPLES:
