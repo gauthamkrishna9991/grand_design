@@ -61,7 +61,6 @@ def search():
         print(res)
 
         result = []
-        print(".................STONKS ............")
         for hits in res['hits']['hits']:
             print(hits['_source']['url'])
             result.append(hits['_source']['url'])
@@ -89,7 +88,7 @@ def search_result():
 
 
 if __name__ == "__main__":
-    # init()
+    init()
     try:
         app.run(debug=True)
     except:
