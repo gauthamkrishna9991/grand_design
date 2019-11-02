@@ -1,0 +1,56 @@
+
+body{
+	margin: 0;
+	padding: 16px;
+	background: red;
+
+
+}
+/*
+button {
+	& img {
+		transition: transform .25s;
+	}
+	&:hover{
+		& > img {
+			  transform:scale(1.2);
+		}
+	}
+	&:focus {
+		outline: none;
+	}
+} */
+.head1{
+	color: blue;
+}
+input {
+	width: 100%;
+	font-family: 'Lexend Deca', sans-serif;;
+	&::placeholder{
+		font-family: 'Lexend Deca', sans-serif;
+
+	}
+	&:focus{
+		outline: none;
+
+	}
+}
+
+.search1{
+
+		width: 1200px;
+
+
+	/* & > .btn-menu {
+		padding: 16px;
+		background: transparent;
+		border: none;
+		cursor: pointer;
+	} */
+
+	/* & > .search{
+		border: none;
+		width: 100%;
+	}
+	 */
+}

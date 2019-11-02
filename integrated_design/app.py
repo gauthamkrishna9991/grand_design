@@ -4,6 +4,7 @@ from flask import Flask,request,jsonify,render_template,redirect,url_for
 from elasticsearch import Elasticsearch
 import requests
 from bs4 import BeautifulSoup
+import searchwithimage as swi
 # from elasticsearch_dsl import Search
 
 app=Flask(__name__)
@@ -13,30 +14,33 @@ es = Elasticsearch()
 
 @app.before_first_request
 def init():
-    tree = ET.parse('sitemaporiginal.xml') 
-    root = tree.getroot()
-    id=0 
-
-    for url in root.findall('url'):
-        link = url.find('loc').text
-        # linkTemp= link.split('/')
-        text=""
-        print(link)
-        r = requests.get(link)
-        soup = BeautifulSoup(r.content, 'html5lib')
-        # print(soup.find('a'))
-
-        # for i in linkTemp:
-        #     text+= i+" "
-        # print(text)
-        body={
-            "url":link,
-            "text": str(soup),
-        }
-        
-        es.index(index="search-index",doc_type='url',id=id,body=body)  
-        id+=1
-        print(link)
+    indexid=['sitemaporiginal.xml']
+    def indexer(file):
+        tree = ET.parse(file) 
+        root = tree.getroot()
+        id=0 
+        for url in root.findall('url'):
+            link = url.find('loc').text
+            # linkTemp= link.split('/')
+            text=""
+            print(link)
+            r = requests.get(link)
+            soup = BeautifulSoup(r.content, 'html5lib')
+            # print(soup.find('a'))
+    
+            # for i in linkTemp:
+            #     text+= i+" "
+            # print(text)
+            body={
+                "url":link,
+                "text": str(soup),
+            }
+            
+            es.index(index="search-index",doc_type='url',id=id,body=body)  
+            id+=1
+            print(link)
+    for i in indexid:
+        indexer(i)
     return 0      
 
 
@@ -48,6 +52,7 @@ def search():
     if request.method=='POST':
         text1=request.form['text']
         print(text1)
+        text1=swi.main(text1)
         body ={
             "query": {
                 "multi_match":{

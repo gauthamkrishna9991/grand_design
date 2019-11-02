@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset>
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>https://www.ncbi.nlm.nih.gov/books/NBK22205/</loc>
+  <lastmod>2019-11-02T20:27:16+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://www.ncbi.nlm.nih.gov/books/NBK22205/?report=reader</loc>
+  <lastmod>2019-11-02T20:27:16+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.ncbi.nlm.nih.gov/books/NBK22205/?report=printable</loc>
+  <lastmod>2019-11-02T20:27:16+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.ncbi.nlm.nih.gov/books/NBK22205/pdf/Bookshelf_NBK22205.pdf</loc>
+  <lastmod>2019-11-02T20:27:16+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.ncbi.nlm.nih.gov/books/NBK22205/?report=classic</loc>
+  <lastmod>2019-11-02T20:27:16+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+
+
+</urlset>
