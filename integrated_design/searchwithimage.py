@@ -30,7 +30,7 @@ def main(query1):
     from eywa.nlu import EntityExtractor
     import random
     import datetime
-    im='test.jpg'
+    im='neilan.jpg'
     weights='yolov3.weights'
     classes='yolov3.txt'
     config='yolov3.cfg'
@@ -113,6 +113,7 @@ def main(query1):
         w = box[2]
         h = box[3]
         label = str(classes[class_ids[i]])
+    vehicle=label
     #print(label)
     CONV_SAMPLES = {
         'vehicle'       : [ "test drive this <img> ", " cost of this <img> vehicle", "what is the mileage of this <img> vehicle",
@@ -241,8 +242,8 @@ def main(query1):
         print(label_list[i][4:])
         searchtxt=str(u_query).replace('<img>',label_list[i][4:])
     elif q_class=='vehicle':
-        print(label)
-        searchtxt=str(u_query).replace('<img>',label)
+        print(vehicle)
+        searchtxt=str(u_query).replace('<img>',vehicle)
     return searchtxt
         
         
