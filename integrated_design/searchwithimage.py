@@ -28,7 +28,7 @@ import datetime
 #ap.add_argument('-cl', '--classes', required=True,
 #                help = 'path to text file containing class names')
 #args = ap.parse_args()
-im='test.jpg'
+im='neilan.jpg'
 weights='yolov3.weights'
 classes='yolov3.txt'
 config='yolov3.cfg'
@@ -234,6 +234,12 @@ if len(detected) > 0:
     print(label_list)
 if q_class=='gender':
     print(label_list[i][4:])
+from eywa.nlu import Pattern
+
+p = Pattern('[fruit: apple, banana] is my favourite fruit')  # create variable [fruit] with sample values {apple, banana}
+
+print(p('i like grapes'))
+
 
 
 

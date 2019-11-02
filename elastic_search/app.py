@@ -13,7 +13,7 @@ es = Elasticsearch()
 
 @app.before_first_request
 def init():
-    tree = ET.parse('sitemap.xml') 
+    tree = ET.parse('sitemaporiginal.xml') 
     root = tree.getroot()
     id=0 
 
@@ -48,7 +48,7 @@ def search():
     if request.method=='POST':
         text=request.form['text']
 
-
+        print(text)
         body ={
             "query": {
                 "multi_match":{
@@ -58,11 +58,9 @@ def search():
         }
 
         res = es.search(index="search-index", body=body)
-        print(res)
 
         result = []
         for hits in res['hits']['hits']:
-            print(hits['_source']['url'])
             result.append(hits['_source']['url'])
 
         return redirect(url_for('search_result', text=result))
@@ -88,7 +86,7 @@ def search_result():
 
 
 if __name__ == "__main__":
-    init()
+    #init()
     try:
         app.run(debug=True)
     except:
