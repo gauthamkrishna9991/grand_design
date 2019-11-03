@@ -44,16 +44,9 @@ def init():
     for i in indexid:
         indexer(i)
     return 0      
-UPLOAD_FOLDER=os.getcwd()
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-	
-@app.route('/imgupload', methods = ['GET', 'POST'])
-def upload_file():
-    if request.method=='POST':
-        f = request.files['file']
-        f.save(app.config['UPLOAD_FOLDER'], 'test.jpg')
-    return redirect(url_for('search'))
-#    return render_template('index.html')
+
+    
+
 
 # Search Items
 @app.route('/api',methods=['GET','POST'])
@@ -79,6 +72,21 @@ def search():
         return redirect(url_for('search_result', text=result))
 
     return render_template('index.html')
+UPLOAD_FOLDER=""
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+	
+
+def uploader():
+    f = request.files['file']
+    f.save(os.path.join(app.config['UPLOAD_FOLDER'], 'test.jpg'))
+
+    
+#    return render_template('index.html')
+@app.route('/imgupload',methods=['GET','POST'])
+def upload_file():
+    if request.method=='POST':
+        uploader()
+    return redirect(url_for('search'))
 
 #showing the content
 @app.route('/', methods=['GET'])
