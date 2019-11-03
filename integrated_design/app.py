@@ -4,6 +4,8 @@ from flask import Flask,request,jsonify,render_template,redirect,url_for
 from elasticsearch import Elasticsearch
 import requests
 from bs4 import BeautifulSoup
+import os
+from werkzeug import secure_filename
 import searchwithimage as swi
 # from elasticsearch_dsl import Search
 
@@ -42,9 +44,16 @@ def init():
     for i in indexid:
         indexer(i)
     return 0      
-
-
-    
+UPLOAD_FOLDER=os.getcwd()
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+	
+@app.route('/imgupload', methods = ['GET', 'POST'])
+def upload_file():
+    if request.method=='POST':
+        f = request.files['file']
+        f.save(app.config['UPLOAD_FOLDER'], 'test.jpg')
+    return redirect(url_for('search'))
+#    return render_template('index.html')
 
 # Search Items
 @app.route('/api',methods=['GET','POST'])

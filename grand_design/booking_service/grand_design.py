@@ -21,6 +21,7 @@ from eywa.nlu import EntityExtractor
 import random
 import datetime
 
+
 # handle command line arguments
 #ap = argparse.ArgumentParser()
 #ap.add_argument('-i', '--image', required=True,

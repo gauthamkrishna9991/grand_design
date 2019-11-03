@@ -30,7 +30,7 @@ def main(query1):
     from eywa.nlu import EntityExtractor
     import random
     import datetime
-    im='neilan.jpg'
+    im='test.jpg'
     weights='yolov3.weights'
     classes='yolov3.txt'
     config='yolov3.cfg'
@@ -187,7 +187,7 @@ def main(query1):
     k = 8
     weight_file = 'agegender.hdf5'
     margin = 0.4
-    img = cv2.imread('neilan.jpg')
+    img = cv2.imread('test.jpg')
     
     
     # for face detection
