@@ -7,14 +7,16 @@ from bs4 import BeautifulSoup
 import os
 from werkzeug import secure_filename
 import searchwithimage as swi
+from sumysum import summ
 # from elasticsearch_dsl import Search
 
 app=Flask(__name__)
 es = Elasticsearch()
 
-
+"""
 
 @app.before_first_request
+
 def init():
     indexid=['sitemaporiginal.xml']
     def indexer(file):
@@ -44,6 +46,8 @@ def init():
     for i in indexid:
         indexer(i)
     return 0      
+
+"""
 
     
 
@@ -102,7 +106,8 @@ def index():
 def search_result():
     text = request.args.get('text', None)
     print(text)
-    return text
+    val=summ(text)
+    return text+"---------------\n"+str(val)
     
 
 
