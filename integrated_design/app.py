@@ -107,7 +107,7 @@ def search_result():
     text = request.args.get('text', None)
     print(text)
     val=summ(text)
-    return text+"---------------\n"+str(val)
+    return text+"---------------[Summary]>>>>>>"+str(val)
     
 
 
