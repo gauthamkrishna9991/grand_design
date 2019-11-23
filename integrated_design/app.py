@@ -8,7 +8,7 @@ import os
 from werkzeug import secure_filename
 import searchwithimage as swi
 from sumysum import summ
-# from elasticsearch_dsl import Search
+
 
 app=Flask(__name__)
 es = Elasticsearch()
