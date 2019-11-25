@@ -11,6 +11,8 @@ def detectedobj(impath):
     weights='yolov3.weights'
     classes='yolov3.txt'
     config='yolov3.cfg'
+    import cv2
+    import numpy as np
     image = cv2.imread(im)
     
     Width = image.shape[1]
