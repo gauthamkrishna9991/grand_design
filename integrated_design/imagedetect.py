@@ -95,7 +95,9 @@ def detectedobj(impath):
     vehicle=label
     return vehicle
 
-
+'''
+age detection
+'''
 def detectage(impath):
     from pathlib import Path
     import cv2
