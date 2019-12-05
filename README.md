@@ -1,4 +1,4 @@
-# grand_design
+# Grand_Design
 
 
 
@@ -29,3 +29,37 @@ sample 1: test drive this <img>
 
 sample 2: diseases this gender <img> have
 ```
+
+
+# QUICK Tutorial
+
+Check the files inside the integrated design folder.
+
+## Flask app
+
+The app.py contains a flask app.Flask is a popular, extensible web microframework for building web applications with Python.
+The query from the search page is recieved by flask app and redirected to another url where processing is done.
+
+## ElasticSearch
+
+The elasticsearch module inside app.py creates indexes using a sitemap.xml (it is also in the same folder) and these indexes are used to get the resultant outputs for a search query. The pageranking algorithm is based on the number of words in the query appearing inside a website.
+
+## Image classification models
+
+The image classification models, here used are seperated into different functions, each function for each kind of image classification. The models could be found inside imagedetect.py .
+
+## Eywa 
+
+Eywa is a conversational agent which contains modules like Classifier,EntityExtractor, Pattern , etc and here we used an eywa classifier to sort the classes which a query belongs to.
+
+[learn more about eywa here](https://github.com/farizrahman4u/eywa/tree/master/eywa)
+
+## Searchwithimage
+
+The file searchwithimage.py contains the codebase for integrated search with image and string. 
+
+
+
+
+
+
