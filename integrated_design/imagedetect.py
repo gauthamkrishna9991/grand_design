@@ -98,6 +98,7 @@ def detectedobj(impath):
 '''
 age detection
 '''
+print(detectedobj('test.jpg'))
 def detectage(impath):
     from pathlib import Path
     import cv2
