@@ -13,7 +13,6 @@ from sumysum import summ
 app=Flask(__name__)
 es = Elasticsearch()
 
-"""
 
 @app.before_first_request
 
@@ -47,7 +46,6 @@ def init():
         indexer(i)
     return 0      
 
-"""
 
     
 
@@ -112,7 +110,7 @@ def search_result():
 
 
 if __name__ == "__main__":
-    #init()
+    init()
     try:
         app.run(debug=True)
     except:
