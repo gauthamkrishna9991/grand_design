@@ -12,7 +12,7 @@ def main(query1):
     from eywa.nlu import EntityExtractor    
     import cv2
     import numpy as np
-    from imagedetect import detectedobj,detectage
+    from imagedetect import detectedobj,detectage,similar
     
     #print(label)
     CONV_SAMPLES = {
@@ -40,6 +40,8 @@ def main(query1):
         label_list=detectage('test.jpg')
         print(label_list[0])
         searchtxt=str(u_query).replace('<img>',label_list[0])
+        
+        
     elif q_class=='vehicle':
         vehicle=detectedobj('test.jpg')
         print(vehicle)

@@ -256,6 +256,8 @@ def similar(impath):
     # (one such list for each sample in the batch)
     print('Predicted:', decode_predictions(preds, top=10)[0])
     d=decode_predictions(preds, top=20)[0]
+    val=[]
     for i in d:
         print(i[1])
-    return 
+        val.append(i[1])
+    return val
