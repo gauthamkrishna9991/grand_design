@@ -13,7 +13,8 @@ def main(query1):
     import cv2
     import numpy as np
     from imagedetect import detectedobj,detectage,similar
-    
+    from nltk.corpus import wordnet 
+
     #print(label)
     CONV_SAMPLES = {
         'vehicle'       : [ "test drive this <img> ", " cost of this <img> vehicle", "what is the mileage of this <img> vehicle",
@@ -38,12 +39,26 @@ def main(query1):
     
     if q_class=='gender':
         label_list=detectage('test.jpg')
+        wrd=label_list[0]
         print(label_list[0])
+        synonyms = [] 
+  
+        for i,syn in enumerate(wordnet.synsets(wrd)): 
+            if i<4:
+                for l in syn.lemmas(): 
+                    synonyms.append(l.name()) 
         searchtxt=str(u_query).replace('<img>',label_list[0])
         
         
     elif q_class=='vehicle':
         vehicle=detectedobj('test.jpg')
+        wrd=vehicle
+        synonyms = [] 
+  
+        for i,syn in enumerate(wordnet.synsets(wrd)): 
+            if i<4:
+                for l in syn.lemmas(): 
+                    synonyms.append(l.name()) 
         print(vehicle)
         searchtxt=str(u_query).replace('<img>',vehicle)
     return searchtxt

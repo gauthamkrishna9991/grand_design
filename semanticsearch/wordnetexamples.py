@@ -32,5 +32,5 @@ for i,syn in enumerate(wordnet.synsets(wrd)):
         for l in syn.lemmas(): 
             synonyms.append(l.name()) 
 
-  
+print(synonyms)
 print(list(set(synonyms)))
