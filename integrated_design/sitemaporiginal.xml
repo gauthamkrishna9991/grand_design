@@ -1,61 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset>
 
-<url>
-  <loc>https://github.com/bat-fleck/pyOrganize</loc>
-  <lastmod>2019-10-25T17:17:42+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://github.com/bat-fleck/Food-Donation-App</loc>
-  <lastmod>2019-10-25T17:17:42+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://github.com/bat-fleck/Medical-App</loc>
-  <lastmod>2019-10-25T17:17:42+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://github.com/bat-fleck/PomoDoro-Timer</loc>
-  <lastmod>2019-10-25T17:17:42+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://github.com/bat-fleck?tab=overview&amp;org=ieeecscet</loc>
-  <lastmod>2019-10-25T17:17:42+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://github.com/bat-fleck?tab=overview&amp;org=PeARSearch</loc>
-  <lastmod>2019-10-25T17:17:42+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://github.com/bat-fleck/Keras_Library_practice</loc>
-  <lastmod>2019-10-25T17:17:42+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://github.com/bat-fleck/Food-Donation-App/commits?author=bat-fleck&amp;since=2019-10-01&amp;until=2019-10-26</loc>
-  <lastmod>2019-10-25T17:17:42+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://github.com/bat-fleck/Code-Buckets</loc>
-  <lastmod>2019-10-25T17:17:42+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://github.com/bat-fleck/Code-Buckets/commits?author=bat-fleck&amp;since=2019-10-01&amp;until=2019-10-26</loc>
-  <lastmod>2019-10-25T17:17:42+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://github.com/bat-fleck/Food-Donation-App/pull/2</loc>
-  <lastmod>2019-10-25T17:17:42+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
+
 <url>
   <loc>https://www.ncbi.nlm.nih.gov/books/NBK22205/?report=reader</loc>
   <lastmod>2019-11-02T20:27:16+00:00</lastmod>
