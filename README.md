@@ -8,6 +8,12 @@ Download agegender model and copy it to integrated design folder.(rename it to a
 [Download yolo weights](https://pjreddie.com/media/files/yolov3.weights)
 [Download agegender model](https://github.com/yu4u/age-gender-estimation/releases/download/v0.5/weights.28-3.73.hdf5)
 
+After cloning,install the require packages
+
+```
+pip install -r requirements.txt
+```
+
 
 To run the search engine
 ```
