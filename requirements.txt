@@ -1,0 +1,10 @@
+eywa
+tensorflow
+flask
+nltk
+elasticsearch
+sumy
+numpy
+opencv-python
+bs4
+werkzeug
