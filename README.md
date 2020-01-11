@@ -64,8 +64,9 @@ Eywa is a conversational agent which contains modules like Classifier,EntityExtr
 
 The file searchwithimage.py contains the codebase for integrated search with image and string. 
 
+## License
+This Project is Protected by the GNU Public License v3.0 (GPL 3.0).
 
-
-
+All rights reserved as stated by [GPL 3.0](https://www.gnu.org/licenses/gpl-3.0.en.html)
 
 

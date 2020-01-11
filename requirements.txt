@@ -1,5 +1,4 @@
 eywa
-tensorflow
 flask
 nltk
 elasticsearch
